@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { PROXY } from '../../data/serverUrl';
+// import { PROXY } from '../../data/serverUrl';
 import '../../style/components/CommunityPage/DetailRepleBox.css';
 import DetailRepleItem from './DetailRepleItem';
 
 const DetailRepleBox = ({post_id}) => {
+    const PROXY = process.env.REACT_APP_PROXY;
     const [comments, setComments] = useState([]);
     const [commentInfo, setCommentInfo] = useState({
         content: '',
@@ -21,6 +22,17 @@ const DetailRepleBox = ({post_id}) => {
 
     // 댓글 등록
     const handlePostCommentBtn = () => {
+
+        if(!commentInfo.content) {
+            alert('댓글을 입력해 주세요');
+            return;
+        }
+
+        if(!localStorage.getItem('react_accessToken')) {
+            alert('로그인 후 작성해주세요.');
+            return;
+        }
+
         if(window.confirm('댓글을 등록하시겠습니까 ?')) {
             axios.post(`${PROXY}/community/${post_id}/comments/`, commentInfo, {
                 headers: {
@@ -44,8 +56,6 @@ const DetailRepleBox = ({post_id}) => {
     useEffect(() => {
         axios.get(`${PROXY}/community/${post_id}/comments/`)
         .then((res) => {
-            // console.log(res.data);
-            // console.log(post_id);
             setComments(res.data);
         })
         .catch((err) => {

@@ -3,12 +3,13 @@ import Header from '../../components/Header';
 import '../../style/pages/Mentoring/MentoringDetailPage.css'
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
-import { PROXY } from '../../data/serverUrl';
+// import { PROXY } from '../../data/serverUrl';
 import Footer from '../../components/Footer';
 import { collection, query, getDocs } from 'firebase/firestore';
 import { database } from '../../services/firebase';
 
 const MentoringDetailPage = () => {
+    const PROXY = process.env.REACT_APP_PROXY;
     const navigate = useNavigate();
     const {id} = useParams();
     const [member, setMember] = useState([]); //채팅방에 닉네임이 있을때 채팅방에 접근 가능

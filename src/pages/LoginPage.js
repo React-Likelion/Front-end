@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import '../style/pages/LoginPage.css';
 import { useNavigate } from 'react-router-dom';
-import { PROXY } from '../data/serverUrl';
+// import { PROXY } from '../data/serverUrl';
 import axios from 'axios';
 import { 
     onAuthStateChanged,
@@ -11,7 +11,7 @@ import {
 import { auth } from './../services/firebase';
 
 const LoginPage = () => {
-    
+    const PROXY = process.env.REACT_APP_PROXY;
     const navigate = useNavigate();
     const [loginData,setLoginData] = useState({
         identification:'',

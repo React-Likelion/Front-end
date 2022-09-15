@@ -28,12 +28,11 @@
      margin: 5px;
 }
 
-#lecture-item > div:nth-child(1),
-#mentoring-item > div:nth-child(1), 
-#club-item > div:nth-child(1) {
+#lecture-item > img:nth-child(1),
+#mentoring-item > img:nth-child(1), 
+#club-item > img:nth-child(1) {
     width: 94%;
     height: 120px;
-    background-color: #D8E2D2;
     border-radius: 10px;
     margin: 3%;
 }

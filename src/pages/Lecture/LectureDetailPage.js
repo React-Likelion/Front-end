@@ -10,7 +10,9 @@ import axios from 'axios';
 import { PROXY } from '../../data/serverUrl';
 import Parser from 'html-react-parser';
 
+
 const LectureDetailPage = () => {
+    const PROXY = process.env.REACT_APP_PROXY;
     const location = useLocation();
     const lectureId = location.state.lecture[0].lectureId;
     const lectureTitle = location.state.lecture[0].lectureTitle;

@@ -4,10 +4,10 @@ import '../../style/pages/Community/CommunityUploadPage.css';
 import ImagePreview from '../../components/ImagePreview.js';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import {PROXY} from '../../data/serverUrl.js';
+// import {PROXY} from '../../data/serverUrl.js';
 
 const CommunityUploadPage = () => {
-
+    const PROXY = process.env.REACT_APP_PROXY;
     const navigate = useNavigate();
     const [images, setImages] = useState();
     

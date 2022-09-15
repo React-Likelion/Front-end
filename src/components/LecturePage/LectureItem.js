@@ -2,9 +2,10 @@ import React,{useState,useEffect} from 'react';
 import '../../style/components/LecturePage/LectureItem.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { PROXY } from '../../data/serverUrl';
+// import { PROXY } from '../../data/serverUrl';
 
 const LectureItem = ({id,categoryData,detailCategoryData}) => {
+    const PROXY = process.env.REACT_APP_PROXY;
     const navigate = useNavigate();
     const [propsObj,setPropsObj] = useState({
 

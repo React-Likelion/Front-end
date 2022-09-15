@@ -5,10 +5,10 @@ import '../../style/pages/Club/ClubUploadPage.css';
 import ImagePreview from '../../components/ImagePreview.js';
 import { locationData, fieldData, ageData } from '../../data/CategoryData.js';
 import axios from 'axios';
-import { PROXY } from '../../data/serverUrl.js';
+// import { PROXY } from '../../data/serverUrl.js';
 
 const ClubUploadPage = () => {
-
+    const PROXY = process.env.REACT_APP_PROXY;
     const navigate = useNavigate();
     const [images, setImages] = useState();
     const [clicked, setClicked] = useState([]);

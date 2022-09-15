@@ -4,10 +4,10 @@ import CommunityPostItem from './CommunityPostItem';
 import Pagination from '../Pagenation';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import {PROXY} from '../../data/serverUrl';
+// import {PROXY} from '../../data/serverUrl';
 
 const CommunityBoard = () => {
-
+    const PROXY = process.env.REACT_APP_PROXY;
     const navigate = useNavigate();
     const [posts, setPosts] = useState([]); // axios로 받아와서 설정
     const [notices, setNotices] = useState([]); 
@@ -43,11 +43,11 @@ const CommunityBoard = () => {
         <section className='CommunityBoard'>
             <article id='community-header'>
                 <div>
-                    <select>
+                    {/* <select>
                         <option>공지</option>
                         <option>정보</option>
                         <option>자유</option>
-                    </select>
+                    </select> */}
                 </div>
                 <div>제목</div>
                 <div>작성자</div>

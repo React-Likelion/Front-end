@@ -7,12 +7,13 @@ import Navbar from './../../components/Navbar';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import SearchBar from './../../components/SearchBar';
-import {PROXY} from '../../data/serverUrl';
+// import {PROXY} from '../../data/serverUrl';
 
 const ClubPage = () => {
     const navigate = useNavigate();
     const [datas, setDatas] = useState([]);
-    const [sort, setSort] = useState("")
+    const [sort, setSort] = useState("");
+    const PROXY = process.env.REACT_APP_PROXY;
 
     const onClickBtnHandler = (e) => {
         navigate('upload');
@@ -21,10 +22,7 @@ const ClubPage = () => {
     const onSort = (e) => {
         if(e.target.value == "최신순") {
             setSort(e.target.value)
-            axios.get(`${PROXY}/clubs/by-newset/`, 
-            {headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('react_accessToken')
-            }})
+            axios.get(`${PROXY}/clubs/by-newset/`)
             .then((res) => {
                 console.log(res)
                 setDatas(res.data);
@@ -36,10 +34,7 @@ const ClubPage = () => {
         }
         else {
             setSort(e.target.value)
-            axios.get(`${PROXY}/clubs/by-member/`, 
-            {headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('react_accessToken')
-            }})
+            axios.get(`${PROXY}/clubs/by-member/`)
             .then((res) => {
                 setDatas(res.data);
             })
@@ -50,16 +45,14 @@ const ClubPage = () => {
     }
 
     useEffect(() => {
-        axios.get(`${PROXY}/clubs/`, 
-        {headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('react_accessToken')
-        }})
+        axios.get(`${PROXY}/clubs/by-newset/`)
         .then((res) => {
             console.log(res.data)
             setDatas(res.data);
         })
         .catch((err) => {
             alert("error 발생");
+            console.log("클럽 페이지")
         })
     }, [])
 

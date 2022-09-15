@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useParams, useNavigate} from 'react-router-dom';
 import "../../style/pages/Club/ClubDetailPage.css"
-import {PROXY} from '../../data/serverUrl';
+// import {PROXY} from '../../data/serverUrl';
 import axios from 'axios';
 import ClubInfo from './../../components/ClubPage/ClubInfo';
 import ClubBoard from './../../components/ClubPage/ClubBoard';
@@ -12,6 +12,7 @@ import ClubGallery from '../../components/ClubPage/ClubGallery';
 
 
 const ClubDetailPage = () => {
+    const PROXY = process.env.REACT_APP_PROXY;
     let params = useParams();
     const navigate = useNavigate();
 
@@ -27,9 +28,7 @@ const ClubDetailPage = () => {
     }
 
     useEffect(() => {
-        axios.get(`${PROXY}/clubs/${params.clubId}/`, {headers : {
-            'Authorization': 'Bearer ' + localStorage.getItem('react_accessToken')
-        }})
+        axios.get(`${PROXY}/clubs/${params.clubId}/`)
         .then((res) => {
             console.log(res)
             setDetailData(res.data)

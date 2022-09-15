@@ -1,17 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import '../../style/components/CommunityPage/DetailRepleItem.css';
 import axios from 'axios';
-import { PROXY } from '../../data/serverUrl';
+// import { PROXY } from '../../data/serverUrl';
 import { useNavigate } from 'react-router-dom';
 
 
 const DetailRepleItem = ({ele, idx, post_id, setComments}) => {
-    
+    // console.log(ele);
+    const PROXY = process.env.REACT_APP_PROXY;
     const navigate = useNavigate();
-    const [replyFlag, setReplyFlag] = useState(false);
+    // const [replyFlag, setReplyFlag] = useState(false);
+    // const [reples, setReples] = useState([]);
     const [modifyFlag, setModifyFlag] = useState(false);
     const [modifyContent, setModifyContent] = useState(ele.content);
-    const [reples, setReples] = useState([]);
     
     const [replyInfo, setReplyInfo] = useState({
         content: '',
@@ -69,7 +70,6 @@ const DetailRepleItem = ({ele, idx, post_id, setComments}) => {
               })
             .then((res) => {
                 console.log(res);
-                navigate('/community');
             })
             .catch((err) => {
                 console.log(err);
@@ -78,44 +78,42 @@ const DetailRepleItem = ({ele, idx, post_id, setComments}) => {
     }
 
     // 대댓글 on/off
-    const handleReplyFlagBtn = () => {
-        setReplyFlag(!replyFlag);
-    }
+    // const handleReplyFlagBtn = () => {
+    //     setReplyFlag(!replyFlag);
+    // }
 
-    // 대댓글 등록
-    const handlePostCommentBtn = () => {
-        console.log(replyInfo);
-        if(window.confirm('대댓글을 등록하시겠습니까 ?')) {
-            axios.post(`${PROXY}/community/${post_id}/comments/${ele.id}/`, replyInfo, {
-                headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem('react_accessToken')
-                }
-            })
-            .then((res) => {
-                alert('대댓글이 등록되었습니다.');
-                setReples([...reples, replyInfo]);
-                setReplyInfo({
-                    ...replyInfo, content: ''
-                })
-            })
-            .catch((err) => {
-                alert('댓글을 등록하지 못했습니다.');
-            })
-        }
-    }
+    // // 대댓글 등록
+    // const handlePostCommentBtn = () => {
+    //     console.log(replyInfo);
+    //     if(window.confirm('대댓글을 등록하시겠습니까 ?')) {
+    //         axios.post(`${PROXY}/community/${post_id}/comments/${ele.id}/`, replyInfo, {
+    //             headers: {
+    //                 'Authorization': 'Bearer ' + localStorage.getItem('react_accessToken')
+    //             }
+    //         })
+    //         .then((res) => {
+    //             alert('대댓글이 등록되었습니다.');
+    //             setReples([...reples, replyInfo]);
+    //             setReplyInfo({
+    //                 ...replyInfo, content: ''
+    //             })
+    //         })
+    //         .catch((err) => {
+    //             alert('댓글을 등록하지 못했습니다.');
+    //         })
+    //     }
+    // }
 
-    // 대댓글 조회
-    useEffect(() => {
-        axios.get(`${PROXY}/community/${post_id}/comments/`)
-        .then((res) => {
-            // console.log(res.data);
-            // console.log(post_id);
-            setReples(res.data);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-    }, []);
+    // // 대댓글 조회
+    // useEffect(() => {
+    //     axios.get(`${PROXY}/community/${post_id}/comments/`)
+    //     .then((res) => {
+    //         setReples(res.data);
+    //     })
+    //     .catch((err) => {
+    //         console.log(err);
+    //     })
+    // }, []);
 
 
     return (
@@ -136,7 +134,7 @@ const DetailRepleItem = ({ele, idx, post_id, setComments}) => {
                 </div>
             }
             <div id='extra-btns'>
-                <button onClick={handleReplyFlagBtn}>대댓글</button>
+                {/* <button onClick={handleReplyFlagBtn}>대댓글</button> */}
                 {
                     ele.writer_id === localStorage.getItem('react_nickname') && 
                     <>
@@ -145,13 +143,13 @@ const DetailRepleItem = ({ele, idx, post_id, setComments}) => {
                     </>
                 }
             </div>
-            {
+            {/* {
                 replyFlag &&
                 <><br/><div id='reply-box'>
                     <input type='text' placeholder='  대댓글을 입력해 주세요' value={replyInfo.content} onChange={handleChangeReplyData}/>
                     <button onClick={handlePostCommentBtn}>입력</button>
                 </div></>
-            }
+            } */}
         </section>
     );
 };

@@ -1,8 +1,12 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import '../../style/components/MainPage/MainContentsItem.css';
-import { lecture_data, mentoring_data, club_data, community_data } from '../../data/mainpage_info';
+// import {PROXY} from '../../data/serverUrl.js';
 
 const MainContentsItem = ({category}) => {
+    const PROXY = process.env.REACT_APP_PROXY;
+    const [info, setInfo] = useState([]);
+
     // 박스 하나 요소 정의
     const makeItem = (ele) => {
         const infoItem = [];
@@ -10,7 +14,7 @@ const MainContentsItem = ({category}) => {
             case 'lecture': 
                 infoItem.push(
                 <div id='lecture-item'>
-                    <div>{ele.image}</div>
+                    <img src={ele.image1}/>
                     <div>{ele.title}</div>
                 </div>
                 )
@@ -18,16 +22,16 @@ const MainContentsItem = ({category}) => {
             case 'mentoring': 
                 infoItem.push(
                 <div id='mentoring-item'>
-                    <div>{ele.image}</div>
+                    <img src={ele.image}/>
                     <div>{ele.title}</div>
-                    {ele.tag.map((ele) => <span>{ele}</span>)}
+                    {ele.tag && ele.tag.map((ele) => <span>{ele}</span>)}
                 </div>
                 )
                 break;
             case 'club': 
                 infoItem.push(
                 <div id='club-item'>
-                    <div>{ele.image}</div>
+                    <img>{ele.image}</img>
                     <div>{ele.name}</div>
                     <div>{ele.location}  {ele.member}명</div>
                 </div>
@@ -44,26 +48,24 @@ const MainContentsItem = ({category}) => {
         return infoItem
     }
 
-    // 박스 채워주는 함수
-    const makeInfoBox = () => {
-        // axios로 값 받아서 getInfo로 저장
-        let getInfo = [];
-        const infoBox = [];
-        switch (category) {
-            case 'lecture': getInfo = lecture_data; break;
-            case 'mentoring': getInfo = mentoring_data; break;
-            case 'club': getInfo = club_data; break;
-            case 'community': getInfo = community_data; break;
-        }
-        getInfo.map((ele) => {
-            infoBox.push(makeItem(ele))
+    useEffect(() => {
+        if(category === 'club' || category === 'community') return;
+        axios.get(`${PROXY}/${category}s/main/`)
+        .then((res) => {
+            setInfo(res.data);
         })
-        return infoBox
-    }
+        .catch((err) => {
+            console.log(err);
+        })
+    }, [category])
 
     return (
         <div id={`${category}_container`}>
-            {makeInfoBox()}
+            {
+                info && info.map((ele, idx) => {
+                    return makeItem(ele)
+                })
+            }
         </div>
     );
 };

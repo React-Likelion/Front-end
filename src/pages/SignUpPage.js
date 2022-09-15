@@ -3,12 +3,13 @@ import '../style/pages/SignUpPage.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { PROXY } from '../data/serverUrl';
+// import { PROXY } from '../data/serverUrl';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from './../services/firebase';
 import { jobData } from '../data/CategoryData';
 
 const SignUpPage = () => {
+    const PROXY = process.env.REACT_APP_PROXY;
     const navigate = useNavigate();
     const [signUpData,setSignUpData] = useState({
         identification:'',

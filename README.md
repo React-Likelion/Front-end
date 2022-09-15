@@ -1,2 +1,2 @@
 # Front-end
-Re:act Frontend
+Re:act Frontend (release)

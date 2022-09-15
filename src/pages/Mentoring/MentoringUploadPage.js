@@ -4,11 +4,11 @@ import '../../style/pages/Mentoring/MentoringUploadPage.css';
 import ImagePreview from '../../components/ImagePreview.js';
 import { useNavigate } from 'react-router-dom';
 import { locationData, fieldData, ageData } from '../../data/CategoryData.js';
-import { PROXY } from '../../data/serverUrl.js';
+// import { PROXY } from '../../data/serverUrl.js';
 import axios from 'axios';
 
 const MentoringUploadPage = () => {
-
+    const PROXY = process.env.REACT_APP_PROXY;
     const navigate = useNavigate();
     const [images, setImages] = useState();
     const [tag, setTag] = useState('');

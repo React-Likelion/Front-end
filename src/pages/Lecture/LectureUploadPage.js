@@ -5,10 +5,10 @@ import '../../style/pages/Lecture/LectureUploadPage.css';
 import { lectureCategoryData } from '../../data/CategoryData.js';
 import ImagePreview from '../../components/ImagePreview.js';
 import axios from 'axios';
-import {PROXY} from '../../data/serverUrl.js';
+// import {PROXY} from '../../data/serverUrl.js';
 
 const LectureUploadPage = () => {
-
+    const PROXY = process.env.REACT_APP_PROXY;
     const navigate = useNavigate();
     const [images, setImages] = useState();
     const [checkedInputs, setCheckedInputs] = useState([]);

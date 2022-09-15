@@ -2,7 +2,7 @@ import React, {useState,useEffect} from 'react'
 import axios from 'axios';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import {PROXY} from '../../data/serverUrl.js';
+// import {PROXY} from '../../data/serverUrl.js';
 import '../../style/components/LecturePage/LectureLeftEditor.css';
 import { lectureCategoryData } from '../../data/CategoryData.js';
 import { useNavigate } from 'react-router-dom';
@@ -12,6 +12,7 @@ const LectureLeftEditor = ({lectureId,titleLecture,lectureYoutube,lecturePrice,i
     // const dummy = `<img src=${lectureThumbNail} alt="이미지" />
     // ${lectureDescription}`;
     const navigate = useNavigate();
+    const PROXY = process.env.REACT_APP_PROXY;
 
     //description 뿌리는 방법
     // 1. 최초 강의 등록시 등록하는 이미지 및 내용 받아오기. (썸네일 및 기본내용)

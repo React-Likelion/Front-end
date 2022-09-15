@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import '../../style/components/LecturePage/LectureLeft.css';
 import LectureLeftEditor from './LectureLeftEditor';
-import { PROXY } from '../../data/serverUrl';
+// import { PROXY } from '../../data/serverUrl';
 import Parser from 'html-react-parser';
 
 const LectureLeft = ({lectureId,lectureThumbNail,lectureImg2,lectureImg3,lectureImg4,lectureImg5,classModify,lectureYoutube,lectureTitle,lecturePrice,lectureDescription}) => {
@@ -10,8 +10,6 @@ const LectureLeft = ({lectureId,lectureThumbNail,lectureImg2,lectureImg3,lecture
     let [realDescription,setRealDescription] = useState('');
     let real = lectureDescription;
     const [first,setFirst] = useState(true);
-    // console.log(realDescription);
-    // console.log(imgThumbNail.props);
 
     useEffect(()=>{
             const imgThumbNail = `<img src=${PROXY+lectureThumbNail} alt='강의내용이미지' />`;

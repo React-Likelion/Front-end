@@ -2,9 +2,10 @@ import React,{useEffect,useState} from 'react';
 import LectureItem from './LectureItem';
 import '../../style/components/LecturePage/LectureBox.css';
 import axios from 'axios';
-import { PROXY } from '../../data/serverUrl';
+// import { PROXY } from '../../data/serverUrl';
 
 const LectureBox = ({categoryData,detailCategoryData,option}) => {
+    const PROXY = process.env.REACT_APP_PROXY;
     //axios로 필터링 된 강의에 대한 정보들을 받아옴
     //정보의 형태는 [object]
     //그걸 map형태로 뿌려줌

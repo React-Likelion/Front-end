@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import "../style/components/Filter.css";
-import {PROXY} from "../data/serverUrl";
+// import {PROXY} from "../data/serverUrl";
 import axios from "axios";
 
 const locationList = [
@@ -45,6 +45,7 @@ const personnelList = ["5명+", "10명+", "20명+", "30명+"]
 
 const Filter = ({field}) => {
     const [url, setUrl] = useState("");
+    const PROXY = process.env.REACT_APP_PROXY;
 
     const [choicedLocationList, setChoiceLocationList] = useState([]);
     const [choicedFieldList, setChoicedFieldList] = useState([]);

@@ -27,15 +27,15 @@ import PostDetailPage from './pages/PostDetailPage';
 
 const App = () => {
   
-console.log('______                            _   ');
-console.log('| ___ ＼          _              | |  ');
-console.log('| |_/  /    ___  (_)  __ _   ___ | |_ ');
-console.log('|     /   /  _ ＼    / _` | / __|| __|');
-console.log('|  |＼＼  |  __/  _ | (_| || (__ | |_ ');
-console.log('＼_| ＼_| ＼___| (_) ＼__,_| ＼___| ＼__|');
-console.log('%c 금오공대 멋쟁이 사자처럼', 'font-size:50px; color:orange;');
-console.log('%c @likelionkumoh', 'font-size:25px; color:orange;');
-console.log('%c https://www.instagram.com/likelionkumoh/', 'font-size:25px;')
+// console.log('______                            _   ');
+// console.log('| ___ ＼          _              | |  ');
+// console.log('| |_/  /    ___  (_)  __ _   ___ | |_ ');
+// console.log('|     /   /  _ ＼    / _` | / __|| __|');
+// console.log('|  |＼＼  |  __/  _ | (_| || (__ | |_ ');
+// console.log('＼_| ＼_| ＼___| (_) ＼__,_| ＼___| ＼__|');
+// console.log('%c 금오공대 멋쟁이 사자처럼', 'font-size:50px; color:orange;');
+// console.log('%c @likelionkumoh', 'font-size:25px; color:orange;');
+// console.log('%c https://www.instagram.com/likelionkumoh/', 'font-size:25px;')
 
   const showDevice = useMediaQuery({
     query : "(min-width:420px)"
