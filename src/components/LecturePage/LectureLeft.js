@@ -7,56 +7,55 @@ import Parser from 'html-react-parser';
 const LectureLeft = ({lectureId,lectureThumbNail,lectureImg2,lectureImg3,lectureImg4,lectureImg5,classModify,lectureYoutube,lectureTitle,lecturePrice,lectureDescription}) => {
     console.log(classModify);
     console.log(lectureId);
-
-    const imgThumbNail = `<img src=${PROXY+lectureThumbNail} alt='강의내용이미지' />`;
-    const imgSrc2 = `<img src=${PROXY+lectureImg2} alt='강의내용이미지' />`;
-    const imgSrc3 = `<img src=${PROXY+lectureImg3} alt='강의내용이미지' />`;
-    const imgSrc4 = `<img src=${PROXY+lectureImg4} alt='강의내용이미지' />`;
-    const imgSrc5 = `<img src=${PROXY+lectureImg5} alt='강의내용이미지' />`;
-    let [content,setContent] = useState([]);
-    const [realDescription,setRealDescription] = useState(lectureDescription);
+    let [realDescription,setRealDescription] = useState('');
+    let real = lectureDescription;
+    const [first,setFirst] = useState(true);
     // console.log(realDescription);
     // console.log(imgThumbNail.props);
 
     useEffect(()=>{
-        if(imgThumbNail !== null){
-            console.log(realDescription);
-            setRealDescription(realDescription.replace('<figure class="image"><img></figure>',imgThumbNail));
-            console.log(realDescription);
-        }
-        if(lectureImg2 !== null){
-            console.log('test');
-            setRealDescription(realDescription.replace('<figure class="image"><img></figure>',imgSrc2));
-        }if(lectureImg3 !== null){
-            console.log('test');
-            setRealDescription(realDescription.replace('<figure class="image"><img></figure>',imgSrc3));
-        }if(lectureImg4 !== null){
-            console.log('test');
-            setRealDescription(realDescription.replace('<figure class="image"><img></figure>',imgSrc4));
-        }if(lectureImg5 !== null){
-            console.log('test');
-            setRealDescription(realDescription.replace('<figure class="image"><img></figure>',imgSrc5));
-        }
-        console.log(realDescription);
-        // setContent(
-        //     //꺽쇠로 태그 구분해서 넣기
-        //     realDescription.split('<p>')
-        // );
-        // setContent(
-        //     ...content,
-        //     //꺽쇠로 태그 구분해서 넣기
-        //     realDescription.split('<figure')
-        // );
+            const imgThumbNail = `<img src=${PROXY+lectureThumbNail} alt='강의내용이미지' />`;
+            const imgSrc2 = `<img src=${PROXY+lectureImg2} alt='강의내용이미지' />`;
+            const imgSrc3 = `<img src=${PROXY+lectureImg3} alt='강의내용이미지' />`;
+            const imgSrc4 = `<img src=${PROXY+lectureImg4} alt='강의내용이미지' />`;
+            const imgSrc5 = `<img src=${PROXY+lectureImg5} alt='강의내용이미지' />`;
+            if(lectureDescription.includes('<figure class="image"><img></figure>')){
+                setFirst(false);
+            }
+            if(lectureThumbNail !== null){
+                real = real.replace('<figure class="image"><img></figure>',imgThumbNail);
+            }if(lectureImg2 !== null){
+                real = real.replace('<figure class="image"><img></figure>',imgSrc2);
+            }if(lectureImg3 !== null){
+                real = real.replace('<figure class="image"><img></figure>',imgSrc3);
+            }if(lectureImg4 !== null){
+                real = real.replace('<figure class="image"><img></figure>',imgSrc4);
+            }if(lectureImg5 !== null){
+                real = real.replace('<figure class="image"><img></figure>',imgSrc5);
+            }
+
+            console.log(real);
+            setRealDescription(real);
     },[]);
 
-    console.log(content);
+
+    console.log(lectureThumbNail);
+
     return (
         <div id="LectureLeftDiv">
             {
                 (classModify)?
-                <LectureLeftEditor imgThumbNail={imgThumbNail} lectureThumbNail={PROXY+lectureThumbNail} lectureYoutube={lectureYoutube} lectureId={lectureId} titleLecture={lectureTitle} lecturePrice={lecturePrice} lectureDescription={lectureDescription}/>:
+                <LectureLeftEditor lectureYoutube={lectureYoutube} lectureId={lectureId} titleLecture={lectureTitle} lecturePrice={lecturePrice} lectureDescription={lectureDescription}/>:
                 <>
-                    {Parser(realDescription)}
+                    {
+                        (first === true)?
+                        <>
+                            <img src={PROXY+lectureThumbNail} alt='강의내용이미지' />
+                            {lectureDescription}
+                        </>:
+                        Parser(realDescription)
+                    }
+                    
                 </>
             }
             

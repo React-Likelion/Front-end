@@ -8,6 +8,7 @@ import LectureRight from '../../components/LecturePage/LectureRight';
 import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
 import { PROXY } from '../../data/serverUrl';
+import Parser from 'html-react-parser';
 
 const LectureDetailPage = () => {
     const location = useLocation();
@@ -34,7 +35,7 @@ const LectureDetailPage = () => {
     const [likeState,setLikeState] = useState(false);
     const [likeCount,setLikeCount] = useState(lectureLikeCnt);
     const [applicationModal,setApplicationModal] = useState(false);
-
+    const imgThumbNail = `<img src=${PROXY+lectureThumbNail} alt='강의내용이미지' />`
     useEffect(()=>{
         //나의 강의 인지에 대한 state 실행
         if(localStorage.getItem('react_nickname') === lectureWriter){
@@ -58,7 +59,6 @@ const LectureDetailPage = () => {
                 setLikeState(true);
             }
         }
-
     },[]);
 
     const clickRegistration = ()=>{
@@ -72,9 +72,6 @@ const LectureDetailPage = () => {
     const clickLectureModify = ()=>{
         console.log('강의 수정 로직 실행');
         setClassModify(!classModify);
-    };
-    const myLecture = ()=>{
-        setMyLectureStatus(!myLecutureStatus);
     };
     const purchaseLecture = ()=>{
         //강의 구매 로직
@@ -122,6 +119,9 @@ const LectureDetailPage = () => {
 
     return (
         <div>
+            {
+            console.log('start')
+        }
             <Header />
             <Navbar val={'lecture'}/>
             <div id="LectureDetailDiv">
@@ -139,10 +139,6 @@ const LectureDetailPage = () => {
                 }
                 </section>
                 <section id="LectureRightSection">
-                    
-                    {/*클래스 수정/시청/신청 잘 돌아가는지 확인용, 통신하고 구현하면 지울것*/}
-                    --로직 확인용
-                    <button type="button" onClick={myLecture}>나의 강의</button> 로직 확인용--
 
                     <LectureRight lectureId={lectureId} lectureTitle={lectureTitle} lecturePrice={lecturePrice} />
                     {/* 조건
@@ -171,12 +167,12 @@ const LectureDetailPage = () => {
                         (!applicationModal) ||
                         <div id="modalDiv">
                             <Modal className="modal-container" show={applicationModal} onHide={handleClose}>
-                            {lectureThumbNail}<br/>
+                            {Parser(imgThumbNail)}<br/>
                             <p> &nbsp; 제목 : {lectureTitle}</p>
                             <p> &nbsp; 가격 : {lecturePrice}</p>
                             <p> &nbsp; 강의를 신청하시겠습니까?</p>
                             <hr />
-                            <p> &nbsp; 차감 포인트 : {lecturePrice}</p>
+                            <p style={{fontWeight:"1000"}}> &nbsp; 차감 포인트 : {lecturePrice}</p>
                             <button id="modalBtn" type="button" onClick={purchaseLecture}>클래스 수강시작</button>
                             </Modal>
                         </div>

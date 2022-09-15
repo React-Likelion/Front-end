@@ -9,7 +9,8 @@ const LectureItem = ({id,categoryData,detailCategoryData}) => {
     const [propsObj,setPropsObj] = useState({
 
     });
-    const propsArray = []
+    const propsArray = [];
+    let realDescription;
 
     useEffect(()=>{
         axios.get(`${PROXY}/lectures/${id}/`)
@@ -31,13 +32,12 @@ const LectureItem = ({id,categoryData,detailCategoryData}) => {
                 lectureDescription:res.data.description,
                 categoryData:categoryData,
                 detailCategoryData:detailCategoryData,
-            })
+            });
         }).catch((err)=>{
             console.log(err);
         })
     },[]);
-
-
+    
     const clickLectureItem = ()=>{
         //강의 상세 페이지로 이동하도록
         propsArray.push(propsObj);
