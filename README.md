@@ -3,7 +3,7 @@
   <img src="https://user-images.githubusercontent.com/72565083/231432709-8cd72098-3085-4cde-a9bb-0522cb35ad87.png" alt='프로젝트 로고' width='900px'>
   <br>
   <p align='right'>
-    <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FReact-Likelion%2FFront-end&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
+    <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FReact-Likelion/Front-end&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
   </p>
 </p>
 
@@ -96,6 +96,29 @@
 
 <br/>
 
+## 🏃 시작 가이드
+
+<!-- ### 요구 사항
+누군가 clone해서 실행하려고 할 때 필요한 요구사항 및 버전 기재 
+1. Node.js
+2. Npm 
+<br> -->
+
+설치 및 실행 시 kakao map key 공유에 제한이 있어 제대로 된 서비스 확인이 어렵습니다. 배포된 주소를 통해 확인 부탁드립니다.
+
+### 설치
+```
+$ git clone https://github.com/React-Likelion/Front-end.git
+$ cd Front-end
+```
+
+### 실행
+```
+$ npm install
+$ npm start 
+```
+
+<br/>
 
 <!-- ## 📖 화면 구성
 
